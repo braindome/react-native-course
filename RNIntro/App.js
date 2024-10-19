@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View, ScrollView, FlatList } from "react-native";
+import { Button, StyleSheet, TextInput, View, FlatList } from "react-native";
+import GoalItem from "./components/GoalItem";
 
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState("");
@@ -20,7 +21,7 @@ export default function App() {
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
         <TextInput
-          placeholder="Your course goal"
+          placeholder="Your cheese goal"
           style={styles.textInput}
           onChangeText={goalInputHandler}
         />
@@ -30,12 +31,8 @@ export default function App() {
         <FlatList 
           data={courseGoals} 
           renderItem={(itemData) => {
-            return (
-              <View style={styles.goalItem}>
-                <Text style={styles.goalText}>{itemData.item.text}</Text>
-              </View>
-            )
-        }} 
+            return <GoalItem text={itemData.item.text}/>
+          }}
         keyExtractor={(item, index) => {
           return item.id
         }}
@@ -44,55 +41,6 @@ export default function App() {
         />
       </View>
 
-    </View>
-  );
-}
-
-export function Flexbox() {
-  return (
-    <View
-      style={{
-        padding: 50,
-        flexDirection: "column-reverse",
-        width: "80%",
-        height: 300,
-        justifyContent: "space-between",
-        alignItems: "stretch",
-      }}
-    >
-      <View
-        style={{
-          backgroundColor: "red",
-          width: 100,
-          height: 100,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text>1</Text>
-      </View>
-      <View
-        style={{
-          backgroundColor: "blue",
-          width: 100,
-          height: 100,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text>2</Text>
-      </View>
-      <View
-        style={{
-          backgroundColor: "green",
-          width: 100,
-          height: 100,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text>3</Text>
-      </View>
     </View>
   );
 }
@@ -121,17 +69,5 @@ const styles = StyleSheet.create({
   },
   goalsContainer: {
     flex: 3,
-  },
-  goalItem: {
-    padding: 10,
-    marginVertical: 8,
-    borderRadius: 6,
-    backgroundColor: "purple",
-    borderColor: "#000",
-    borderWidth: 1,
-  },
-  goalText: {
-    fontSize: 18,
-    color: "white",
   },
 });
