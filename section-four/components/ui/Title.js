@@ -1,4 +1,4 @@
-import {StyleSheet, Text} from "react-native";
+import {StyleSheet, Text, Platform} from "react-native";
 import Colors from "../../constants/Colors";
 
 function Title({children}) {
@@ -12,10 +12,11 @@ const styles = StyleSheet.create({
     title: {
         fontFamily: "open-sans-bold",
         fontSize: 24,
-        color: Colors.accent500,
+        color: "white",
         textAlign: "center",
-        borderWidth: 2,
-        borderColor: Colors.accent500,
+        //borderWidth: Platform.OS === "android" ? 2 : 0,
+        borderWidth: Platform.select({ios: 0, android: 2}),
+        borderColor: "white",
         padding: 12,
         maxWidth: "80%",
         width: 300
