@@ -1,6 +1,6 @@
 import {Text, View, Pressable, Image, StyleSheet, Platform} from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import MealDetails from "./MealDetails";
+import MealDetails from "../MealDetails";
 
 function MealItem({id, title, imageUrl, duration, complexity, affordability}) {
     const navigation = useNavigation();
@@ -14,13 +14,13 @@ function MealItem({id, title, imageUrl, duration, complexity, affordability}) {
     return (
         <View style={styles.mealItem}>
             <Pressable
-                android_ripple={{color: "#ccc"}}
-                style={({pressed}) => (pressed ? styles.buttonPressed : null)}
+                android_ripple={{ color: "#ccc" }}
+                style={({ pressed }) => (pressed ? styles.buttonPressed : null)}
                 onPress={selectMealItemHandler}
             >
                 <View style={styles.innerContainer}>
                     <View>
-                        <Image source={{uri: imageUrl}} style={styles.image} />
+                        <Image source={{ uri: imageUrl }} style={styles.image} />
                         <Text style={styles.title}>{title}</Text>
                     </View>
                     <MealDetails
@@ -28,9 +28,7 @@ function MealItem({id, title, imageUrl, duration, complexity, affordability}) {
                         affordability={affordability}
                         complexity={complexity}
                     />
-
                 </View>
-
             </Pressable>
         </View>
     );
@@ -42,7 +40,7 @@ const styles = StyleSheet.create({
     mealItem: {
         margin: 16,
         borderRadius: 8,
-        overflow: Platform.OS === "android" && Platform.Version >= 21 ? "hidden" : "visible",
+        overflow: Platform.OS === "android" ? "hidden" : "visible",
         backgroundColor: "white",
         elevation: 4,
         shadowColor: "black",
@@ -52,20 +50,19 @@ const styles = StyleSheet.create({
     },
     image: {
         width: "100%",
-        height: 200.
+        height: 200,
     },
     title: {
         fontWeight: "bold",
         textAlign: "center",
         fontSize: 18,
-        margin: 8
+        margin: 8,
     },
     innerContainer: {
         borderRadius: 8,
-        overflow: "hidden"
+        overflow: "hidden",
     },
     buttonPressed: {
         opacity: 0.6,
     },
-
 });
